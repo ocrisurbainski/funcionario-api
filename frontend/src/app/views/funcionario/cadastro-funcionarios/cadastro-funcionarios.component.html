@@ -1,0 +1,75 @@
+<form name="formCadFuncionarios" (ngSubmit)="ngOnSubmit()" #formCadFuncionarios="ngForm" novalidate>
+    <app-page-title title="Cadastro de funcionários"></app-page-title>
+
+    <div class="row mt-3">
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+            <div class="form-group">
+                <label for="codigo">Código</label>
+                <input type="text" name="codigo" [(ngModel)]="func.idFuncionario" disabled class="form-control">
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-2">
+            <div class="form-group">
+                <label for="numero_nis">Número NIS</label>
+                <input type="number" name="numero_nis"  [(ngModel)]="func.numeroNis" class="form-control" 
+                    [ngClass]="{ 'was-validated is-invalid' : campoNumeroNis.invalid && (formCadFuncionarios.submitted || campoNumeroNis.dirty || campoNumeroNis.touched) }" 
+                    #campoNumeroNis="ngModel" autofocus required validateNis>
+                <div *ngIf="campoNumeroNis.invalid && (formCadFuncionarios.submitted || campoNumeroNis.dirty || campoNumeroNis.touched)" class="invalid-feedback">
+                    <p *ngIf="campoNumeroNis.errors.required">Campo obrigatório.</p>
+                    <p *ngIf="!campoNumeroNis.errors.required && campoNumeroNis.errors.nis">Número NIS informado é inválido.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" name="email" [(ngModel)]="func.email" class="form-control" 
+                    [ngClass]="{ 'was-validated is-invalid' : campoEmail.invalid && (formCadFuncionarios.submitted || campoEmail.dirty || campoEmail.touched) }" 
+                    #campoEmail="ngModel" required email>
+                <div *ngIf="campoEmail.invalid && (formCadFuncionarios.submitted || campoEmail.dirty || campoEmail.touched)" class="invalid-feedback">
+                    <p *ngIf="campoEmail.errors.required">Campo obrigatório.</p>
+                    <p *ngIf="campoEmail.errors.email">Informe um email válido.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="clearfix visible-lg-block"></div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label for="nome">Nome</label>
+                <input type="text" name="nome" [(ngModel)]="func.nome" class="form-control" 
+                    [ngClass]="{ 'was-validated is-invalid' : campoNome.invalid && (formCadFuncionarios.submitted || campoNome.dirty || campoNome.touched) }"
+                    #campoNome="ngModel" required minlength="2" maxlength="30">
+                <div *ngIf="campoNome.invalid && (formCadFuncionarios.submitted || campoNome.dirty || campoNome.touched)" class="invalid-feedback">
+                    <p *ngIf="campoNome.errors.required">Campo obrigatório.</p>
+                    <p *ngIf="campoNome.errors.minlength">Informe no mínimo 2 caracteres.</p>
+                    <p *ngIf="campoNome.errors.maxlength">Informe no máximo 30 caracteres.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="form-group">
+                <label for="sobrenome">Sobrenome</label>
+                <input type="text" name="sobrenome" [(ngModel)]="func.sobrenome" class="form-control" 
+                    [ngClass]="{ 'was-validated is-invalid' : campoSobrenome.invalid && (formCadFuncionarios.submitted || campoSobrenome.dirty || campoSobrenome.touched) }"
+                    #campoSobrenome="ngModel" required minlength="3" maxlength="50">
+                <div *ngIf="campoSobrenome.invalid && (formCadFuncionarios.submitted || campoSobrenome.dirty || campoSobrenome.touched)" class="invalid-feedback">
+                    <p *ngIf="campoSobrenome.errors.required">Campo obrigatório.</p>
+                    <p *ngIf="campoSobrenome.errors.minlength">Informe no mínimo 3 caracteres.</p>
+                    <p *ngIf="campoSobrenome.errors.maxlength">Informe no máximo 50 caracteres.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <button type="submit" class="btn btn-primary">
+                Salvar
+            </button>
+        </div>
+    </div>
+</form>

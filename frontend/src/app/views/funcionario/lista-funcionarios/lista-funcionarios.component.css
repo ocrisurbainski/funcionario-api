@@ -1,0 +1,10 @@
+.col-codigo {
+    width: 100px;
+}
+.col-numero-nis,
+.col-opcoes {
+    width: 130px;
+}
+.col-opcoes {
+    text-align: center;
+}

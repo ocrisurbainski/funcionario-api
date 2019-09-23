@@ -1,0 +1,58 @@
+<form name="formListaFuncionarios">
+    <app-page-title title="Lista de funcionários"></app-page-title>
+
+    <div class="row mt-3">
+        <div class="col-6">
+            <a class="btn btn-primary" routerLink="/funcionario/cadastro">
+                Novo
+            </a>
+        </div>
+    </div>
+
+    <table class="table table-bordered bg-white" [ngClass]="{ 'table-hover' : funcionarios.length > 0 }">
+        <thead>
+            <tr>
+                <th class="col-codigo">Código</th>
+                <th>Nome</th>
+                <th>Email</th>
+                <th class="col-numero-nis">Número NIS</th>
+                <th class="col-opcoes">Opções</th>
+            </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngIf="funcionarios.length > 0">
+                <tr *ngFor="let func of funcionarios">
+                    <td>{{ func.idFuncionario }}</td>
+                    <td>{{ func.nome }} {{ func.sobrenome }}</td>
+                    <td>{{ func.email }}</td>
+                    <td>{{ func.numeroNis }}</td>
+                    <td>
+                        <div class="d-flex justify-content-around">
+                            <button type="button" class="btn border border-primary" routerLink="/funcionario/cadastro/{{ func.idFuncionario }}"
+                                tooltip="Clique aqui para editar este funcionário." placement="left"
+                                container="body">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button type="button" class="btn border border-danger" (click)="delete(func)"
+                                tooltip="Clique aqui para excluir este funcionário." placement="left"
+                                container="body">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-container>
+            <ng-container *ngIf="funcionarios.length == 0">
+                <tr>
+                    <td colspan="5">
+                        Nenhum funcionário encontrado.
+                    </td>
+                </tr>
+            </ng-container>
+        </tbody>
+    </table>
+    <pagination [totalItems]="totalItens" [itemsPerPage]="itemsPerPage" (pageChanged)="pageChanged($event)" 
+        [(ngModel)]="currentPage" [ngModelOptions]="{standalone: true}"
+        previousText="Anterior" nextText="Próxima">
+    </pagination>
+</form>
