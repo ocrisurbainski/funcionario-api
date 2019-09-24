@@ -1,7 +1,7 @@
 <form name="formListaFuncionarios">
     <app-page-title title="Lista de funcionários"></app-page-title>
 
-    <div class="row mt-3">
+    <div class="row mt-2">
         <div class="col-6">
             <a class="btn btn-primary" routerLink="/funcionario/cadastro">
                 Novo
@@ -9,7 +9,7 @@
         </div>
     </div>
 
-    <table class="table table-bordered bg-white" [ngClass]="{ 'table-hover' : funcionarios.length > 0 }">
+    <table class="table table-bordered bg-white mt-2" [ngClass]="{ 'table-hover' : funcionarios.length > 0 }">
         <thead>
             <tr>
                 <th class="col-codigo">Código</th>
