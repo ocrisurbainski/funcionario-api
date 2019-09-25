@@ -11,7 +11,7 @@ import { Form } from '@angular/forms';
 })
 export class CadastroFuncionariosComponent implements OnInit {
 
-	private func : Funcionario;
+	public func : Funcionario;
 
 	private isNewFuncionario : boolean;
 	

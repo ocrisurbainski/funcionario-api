@@ -10,13 +10,13 @@ import { Observable } from 'rxjs';
 })
 export class ListaFuncionariosComponent implements OnInit {
 
-	private funcionarios : Funcionario[];
+	public funcionarios : Funcionario[];
 
-	private totalItens : number = 0;
+	public totalItens : number = 0;
 
-	private itemsPerPage : number = 20;
+	public itemsPerPage : number = 20;
 
-	private currentPage : number = 1;
+	public currentPage : number = 1;
 
 	constructor(private funcionarioService : FuncionarioService) {
 		this.funcionarios = [];
